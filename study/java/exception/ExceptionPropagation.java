@@ -24,6 +24,3 @@ public class ExceptionPropagation {
         throw new RuntimeException("second에서 문제!");
     }
 }
-
-
-// 어떻게 출력 될 지 예측 해 보시오
