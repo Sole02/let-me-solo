@@ -1,6 +1,11 @@
 package projects.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calculator {
+
+    public List<Integer> resultList = new ArrayList<>();
 
     public int calculate(int num1, int num2, char operator) {
 
@@ -32,6 +37,7 @@ public class Calculator {
         } else {
             throw new IllegalArgumentException("지원하지 않는 기호입니다.");
         }
+        resultList.add(result);
         return result;
     }
 
