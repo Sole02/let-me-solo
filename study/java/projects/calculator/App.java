@@ -1,5 +1,7 @@
 package projects.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -30,8 +32,14 @@ public class App {
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
+            System.out.println("저장된 결과: " + calculator.getResultList());
+            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, reset 입력 시 저장된 결과 초기화)");
             answer = scanner.next();
+            if (answer.equals("reset")) {
+                List<Integer> newList = new ArrayList<>();
+                calculator.setResultList(newList);
+                System.out.println("저장된 결과 초기화 완료");
+            }
         }
         System.out.println("계산기를 종료합니다.");
     }

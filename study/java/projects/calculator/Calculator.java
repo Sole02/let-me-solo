@@ -5,7 +5,15 @@ import java.util.List;
 
 public class Calculator {
 
-    public List<Integer> resultList = new ArrayList<>();
+    private List<Integer> resultList = new ArrayList<>();
+
+    public List<Integer> getResultList() {
+        return resultList;
+    }
+
+    public void setResultList(List<Integer> resultList) {
+        this.resultList = resultList;
+    }
 
     public int calculate(int num1, int num2, char operator) {
 
