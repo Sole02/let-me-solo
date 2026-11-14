@@ -21,12 +21,23 @@ public class App {
 
             System.out.println("연산 기호를 입력해주세요. (+, -, *, /, %)");
             char operator = scanner.next().charAt(0);
+            OperatorType operatorType = null;
+            for (OperatorType type : OperatorType.values()) {
+                if (operator == type.getSymbol()) {
+                    operatorType = type;
+                }
+            }
+
+            if (operatorType == null) {
+                System.out.println("지원하지 않는 기호입니다.");
+                continue;
+            }
 
             System.out.println("숫자를 입력해주세요.");
             int num2 = scanner.nextInt();
 
             try {
-                int result = calculator.calculate(num1, num2, operator);
+                int result = calculator.calculate(num1, num2, operatorType);
                 System.out.println(num1 + " " + operator + " " + num2 + " = " + result);
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());

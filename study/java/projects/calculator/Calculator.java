@@ -19,36 +19,34 @@ public class Calculator {
         this.resultList.remove(0);
     }
 
-    public int calculate(int num1, int num2, char operator) {
+    public int calculate(int num1, int num2, OperatorType type) {
 
         int result = 0;
 
-        if (operator == '+') {
+        if (type == OperatorType.ADDITION) {
             result = num1 + num2;
 
-        } else if (operator == '-') {
+        } else if (type == OperatorType.SUBTRACTION) {
             result = num1 - num2;
 
-        } else if (operator == '*') {
+        } else if (type == OperatorType.MULTIPLICATION) {
             result = num1 * num2;
 
-        } else if (operator == '%') {
+        } else if (type == OperatorType.REMAINDER) {
             if (num2 == 0) {
                 throw new ArithmeticException("두번째 정수에 0이 입력될 수 없습니다.");
             } else {
                 result = num1 % num2;
             }
 
-        } else if (operator == '/') {
+        } else if (type == OperatorType.DIVISION) {
             if (num2 == 0) {
                 throw new ArithmeticException("두번째 정수에 0이 입력될 수 없습니다.");
             } else {
                 result = num1 / num2;
             }
-
-        } else {
-            throw new IllegalArgumentException("지원하지 않는 기호입니다.");
         }
+
         resultList.add(result);
         return result;
     }
