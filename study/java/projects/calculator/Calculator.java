@@ -15,6 +15,10 @@ public class Calculator {
         this.resultList = resultList;
     }
 
+    public void removeResult() {
+        this.resultList.remove(0);
+    }
+
     public int calculate(int num1, int num2, char operator) {
 
         int result = 0;

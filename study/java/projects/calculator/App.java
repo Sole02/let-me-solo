@@ -33,16 +33,21 @@ public class App {
             }
 
             System.out.println("저장된 결과: " + calculator.getResultList());
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, reset 입력 시 저장된 결과 초기화)");
+            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, remove 입력 시 첫번째 저장된 결과 제거, reset 입력 시 저장된 결과 초기화)");
             answer = scanner.next();
             if (answer.equals("reset")) {
                 List<Integer> newList = new ArrayList<>();
                 calculator.setResultList(newList);
                 System.out.println("저장된 결과 초기화 완료");
+            } else if (answer.equals("remove")) {
+                try {
+                    calculator.removeResult();
+                    System.out.println("저장된 첫번째 결과 제거 완료");
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("삭제할 수 있는 저장된 결과가 없습니다.");
+                }
             }
         }
         System.out.println("계산기를 종료합니다.");
     }
-
-
 }
