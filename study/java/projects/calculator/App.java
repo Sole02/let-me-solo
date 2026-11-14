@@ -1,6 +1,7 @@
 package projects.calculator;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,15 @@ public class App {
         while (!answer.equals("exit")) {
 
             System.out.println("숫자를 입력해주세요.");
-            int num1 = scanner.nextInt();
+            int num1 = 0;
+
+            try {
+                num1 = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("숫자를 입력하지 않으셨습니다.");
+                scanner.next();
+                continue;
+            }
 
             System.out.println("연산 기호를 입력해주세요. (+, -, *, /, %)");
             char operator = scanner.next().charAt(0);
@@ -34,7 +43,15 @@ public class App {
             }
 
             System.out.println("숫자를 입력해주세요.");
-            int num2 = scanner.nextInt();
+            int num2 = 0;
+
+            try {
+                num2 = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("숫자를 입력하지 않으셨습니다.");
+                scanner.next();
+                continue;
+            }
 
             try {
                 int result = calculator.calculate(num1, num2, operatorType);
