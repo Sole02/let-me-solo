@@ -11,17 +11,17 @@ public class App {
 
     public static void main(String[] args) {
 
-        Calculator calculator = new Calculator();
+        Calculator<Double> calculator = new Calculator<>();
 
         String answer = "";
 
         while (!answer.equals("exit")) {
 
             System.out.println("숫자를 입력해주세요.");
-            int num1 = 0;
+            double num1 = 0;
 
             try {
-                num1 = scanner.nextInt();
+                num1 = scanner.nextDouble();
             } catch (InputMismatchException e) {
                 System.out.println("숫자를 입력하지 않으셨습니다.");
                 scanner.next();
@@ -43,10 +43,10 @@ public class App {
             }
 
             System.out.println("숫자를 입력해주세요.");
-            int num2 = 0;
+            double num2 = 0;
 
             try {
-                num2 = scanner.nextInt();
+                num2 = scanner.nextDouble();
             } catch (InputMismatchException e) {
                 System.out.println("숫자를 입력하지 않으셨습니다.");
                 scanner.next();
@@ -54,7 +54,7 @@ public class App {
             }
 
             try {
-                int result = calculator.calculate(num1, num2, operatorType);
+                double result = calculator.calculate(num1, num2, operatorType);
                 System.out.println(num1 + " " + operator + " " + num2 + " = " + result);
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
@@ -64,7 +64,7 @@ public class App {
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, remove 입력 시 첫번째 저장된 결과 제거, reset 입력 시 저장된 결과 초기화)");
             answer = scanner.next();
             if (answer.equals("reset")) {
-                List<Integer> newList = new ArrayList<>();
+                List<Double> newList = new ArrayList<>();
                 calculator.setResultList(newList);
                 System.out.println("저장된 결과 초기화 완료");
             } else if (answer.equals("remove")) {

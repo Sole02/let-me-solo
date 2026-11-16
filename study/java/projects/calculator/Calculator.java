@@ -3,15 +3,15 @@ package projects.calculator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculator {
+public class Calculator<T extends Number> {
 
-    private List<Integer> resultList = new ArrayList<>();
+    private List<Double> resultList = new ArrayList<>();
 
-    public List<Integer> getResultList() {
+    public List<Double> getResultList() {
         return resultList;
     }
 
-    public void setResultList(List<Integer> resultList) {
+    public void setResultList(List<Double> resultList) {
         this.resultList = resultList;
     }
 
@@ -19,31 +19,31 @@ public class Calculator {
         this.resultList.remove(0);
     }
 
-    public int calculate(int num1, int num2, OperatorType type) {
+    public double calculate(T num1, T num2, OperatorType type) {
 
-        int result = 0;
+        double result = 0;
 
         if (type == OperatorType.ADDITION) {
-            result = num1 + num2;
+            result = num1.doubleValue() + num2.doubleValue();
 
         } else if (type == OperatorType.SUBTRACTION) {
-            result = num1 - num2;
+            result = num1.doubleValue() - num2.doubleValue();
 
         } else if (type == OperatorType.MULTIPLICATION) {
-            result = num1 * num2;
+            result = num1.doubleValue() * num2.doubleValue();
 
         } else if (type == OperatorType.REMAINDER) {
-            if (num2 == 0) {
+            if (num2.doubleValue() == 0) {
                 throw new ArithmeticException("두번째 정수에 0이 입력될 수 없습니다.");
             } else {
-                result = num1 % num2;
+                result = num1.doubleValue() % num2.doubleValue();
             }
 
         } else if (type == OperatorType.DIVISION) {
-            if (num2 == 0) {
+            if (num2.doubleValue() == 0) {
                 throw new ArithmeticException("두번째 정수에 0이 입력될 수 없습니다.");
             } else {
-                result = num1 / num2;
+                result = num1.doubleValue() / num2.doubleValue();
             }
         }
 
