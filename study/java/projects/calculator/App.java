@@ -1,8 +1,6 @@
 package projects.calculator;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -56,7 +54,7 @@ public class App {
             try {
                 double result = calculator.calculate(num1, num2, operatorType);
                 System.out.println(num1 + " " + operator + " " + num2 + " = " + result);
-            } catch (RuntimeException e) {
+            } catch (ArithmeticException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -64,12 +62,11 @@ public class App {
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, remove 입력 시 첫번째 저장된 결과 제거, reset 입력 시 저장된 결과 초기화, greater 입력 시 기준 값보다 큰 결과 보기)");
             answer = scanner.next();
             if (answer.equals("reset")) {
-                List<Double> newList = new ArrayList<>();
-                calculator.setResultList(newList);
+                calculator.clearResults();
                 System.out.println("저장된 결과 초기화 완료");
             } else if (answer.equals("remove")) {
                 try {
-                    calculator.removeResult();
+                    calculator.removeFirstResult();
                     System.out.println("저장된 첫번째 결과 제거 완료");
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("삭제할 수 있는 저장된 결과가 없습니다.");
