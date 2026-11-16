@@ -51,4 +51,13 @@ public class Calculator<T extends Number> {
         return result;
     }
 
+    public List<Double> getResultsGreaterThan(double threshold) {
+
+        List<Double> greaterResults = resultList
+                .stream()
+                .filter(result -> result > threshold)
+                .toList();
+        return greaterResults;
+    }
+
 }

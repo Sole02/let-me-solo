@@ -61,7 +61,7 @@ public class App {
             }
 
             System.out.println("저장된 결과: " + calculator.getResultList());
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, remove 입력 시 첫번째 저장된 결과 제거, reset 입력 시 저장된 결과 초기화)");
+            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, remove 입력 시 첫번째 저장된 결과 제거, reset 입력 시 저장된 결과 초기화, greater 입력 시 기준 값보다 큰 결과 보기)");
             answer = scanner.next();
             if (answer.equals("reset")) {
                 List<Double> newList = new ArrayList<>();
@@ -73,6 +73,15 @@ public class App {
                     System.out.println("저장된 첫번째 결과 제거 완료");
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("삭제할 수 있는 저장된 결과가 없습니다.");
+                }
+            } else if (answer.equals("greater")) {
+                System.out.println("기준 값을 입력해주세요.");
+                try {
+                    double threshold = scanner.nextDouble();
+                    System.out.println("기준 값보다 큰 결과: " + calculator.getResultsGreaterThan(threshold));
+                } catch (InputMismatchException e) {
+                    System.out.println("숫자를 입력하지 않으셨습니다.");
+                    scanner.next();
                 }
             }
         }
