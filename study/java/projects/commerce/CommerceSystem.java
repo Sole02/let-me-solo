@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class CommerceSystem {
 
-    List<Category> categories;
+    private List<Category> categories;
 
     public CommerceSystem(List<Category> categories) {
         this.categories = categories;
@@ -24,7 +24,7 @@ public class CommerceSystem {
             int number = 0;
             for (Category category : categories) {
                 number++;
-                System.out.println(number + ". " + category.name);
+                System.out.println(number + ". " + category.getName());
             }
             System.out.println("0. 프로그램 종료");
 
@@ -35,20 +35,20 @@ public class CommerceSystem {
                 } else {
                     number = 0;
                     Category category = categories.get(categoryInput - 1);
-                    System.out.println("[ " + category.name + " 카테고리 ]");
-                    for (Product product : category.productList) {
+                    System.out.println("[ " + category.getName() + " 카테고리 ]");
+                    for (Product product : category.getProductList()) {
                         number++;
-                        System.out.print(number + ". 제품 이름: " + product.name + " | ");
-                        System.out.print("가격: " + product.price + "원 | ");
-                        System.out.println("설명: " + product.description);
+                        System.out.print(number + ". 제품 이름: " + product.getName() + " | ");
+                        System.out.print("가격: " + product.getPrice() + "원 | ");
+                        System.out.println("설명: " + product.getDescription());
                     }
                     System.out.println("0. 뒤로가기");
                     productInput = scanner.nextInt();
                     if (productInput == 0) {
                         System.out.println("메인으로 돌아갑니다.");
                     } else {
-                        Product product = category.productList.get(productInput - 1);
-                        System.out.println("선택한 상품: " + product.name + " | " + product.price + "원 | " + product.description + " | 재고: " + product.stockQuantity);
+                        Product product = category.getProductList().get(productInput - 1);
+                        System.out.println("선택한 상품: " + product.getName() + " | " + product.getPrice() + "원 | " + product.getDescription() + " | 재고: " + product.getStockQuantity());
                     }
                 }
             } catch (IndexOutOfBoundsException e) {
