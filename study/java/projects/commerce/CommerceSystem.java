@@ -92,8 +92,12 @@ public class CommerceSystem {
                         System.out.println("1. 확인   2. 취소");
                         int addToCartInput = scanner.nextInt();
                         if (addToCartInput == 1) {
-                            cart.addCartItem(new CartItem(product, 1));
-                            System.out.println(product.getName() + " 상품이 장바구니에 추가되었습니다.");
+                            if (cart.countProduct(product) < product.getStockQuantity()) {
+                                cart.addCartItem(new CartItem(product, 1));
+                                System.out.println(product.getName() + " 상품이 장바구니에 추가되었습니다.");
+                            } else {
+                                throw new IllegalStateException("장바구니에 담을 상품 재고가 부족합니다.");
+                            }
                         } else if (addToCartInput == 2) {
                             System.out.println("취소되었습니다.");
                         } else {

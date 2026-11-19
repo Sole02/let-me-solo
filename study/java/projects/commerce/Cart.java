@@ -36,4 +36,15 @@ public class Cart {
     public boolean isEmpty() {
         return cartItems.isEmpty();
     }
+
+    public int countProduct(Product product) {
+        int cartQuantity;
+        for (CartItem cartItem : cartItems) {
+            if (product.getName().equals(cartItem.getProduct().getName())) {
+                cartQuantity = cartItem.getQuantity();
+                return cartQuantity;
+            }
+        }
+        return 0;
+    }
 }
