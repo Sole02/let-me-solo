@@ -28,4 +28,8 @@ public class Product {
     public int getStockQuantity() {
         return stockQuantity;
     }
+
+    public void reduceStock(int quantity) {
+        stockQuantity -= quantity;
+    }
 }

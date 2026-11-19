@@ -2,26 +2,20 @@ package projects.commerce;
 
 public class CartItem {
 
-    private String name;
+    private Product product;
     private int quantity;
-    private int price;
 
-    public CartItem(String name, int quantity, int price) {
-        this.name = name;
+    public CartItem(Product product, int quantity) {
+        this.product = product;
         this.quantity = quantity;
-        this.price = price;
     }
 
-    public String getName() {
-        return name;
+    public Product getProduct() {
+        return product;
     }
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public int getPrice() {
-        return price;
     }
 
     public void addQuantity() {

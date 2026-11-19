@@ -13,11 +13,27 @@ public class Cart {
 
     public void addCartItem(CartItem cartItem) {
         for (CartItem item : cartItems) {
-            if (item.getName().equals(cartItem.getName())) {
+            if (item.getProduct().getName().equals(cartItem.getProduct().getName())) {
                 item.addQuantity();
                 return;
             }
         }
         this.cartItems.add(cartItem);
+    }
+
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (CartItem cartItem : cartItems) {
+            totalPrice += cartItem.getQuantity() * cartItem.getProduct().getPrice();
+        }
+        return totalPrice;
+    }
+
+    public void clearCartItems() {
+        this.cartItems.clear();
+    }
+
+    public boolean isEmpty() {
+        return cartItems.isEmpty();
     }
 }
