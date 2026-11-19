@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class CommerceSystem {
 
     private List<Category> categories;
+    private Cart cart = new Cart();
 
     public CommerceSystem(List<Category> categories) {
         this.categories = categories;
@@ -49,6 +50,17 @@ public class CommerceSystem {
                     } else {
                         Product product = category.getProductList().get(productInput - 1);
                         System.out.println("선택한 상품: " + product.getName() + " | " + product.getPrice() + "원 | " + product.getDescription() + " | 재고: " + product.getStockQuantity());
+                        System.out.println("위 상품을 장바구니에 추가하시겠습니까?");
+                        System.out.println("1. 확인   2. 취소");
+                        int confirmAddingToCart = scanner.nextInt();
+                        if (confirmAddingToCart == 1) {
+                            cart.addCartItem(new CartItem(product.getName(), 1, product.getPrice()));
+                            System.out.println(product.getName() + " 상품이 장바구니에 추가되었습니다.");
+                        } else if (confirmAddingToCart == 2) {
+                            System.out.println("취소되었습니다.");
+                        } else {
+                            System.out.println("잘못된 입력입니다.");
+                        }
                     }
                 }
             } catch (IndexOutOfBoundsException e) {
