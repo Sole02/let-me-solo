@@ -8,6 +8,7 @@ public class CommerceSystem {
 
     private List<Category> categories;
     private Cart cart = new Cart();
+    private String adminPassword = "1234";
 
     public CommerceSystem(List<Category> categories) {
         this.categories = categories;
@@ -28,6 +29,7 @@ public class CommerceSystem {
                 System.out.println(number + ". " + category.getName());
             }
             System.out.println("0. 프로그램 종료");
+            System.out.println("6. 관리자 모드");
 
             if (!cart.isEmpty()) {
                 System.out.println("[ 주문 관리 ]");
@@ -71,6 +73,15 @@ public class CommerceSystem {
                     }
                     cart.clearCartItems();
                     System.out.println("장바구니를 비웠습니다.");
+                } else if (categoryInput == 6) {
+                    scanner.nextLine();
+                    System.out.print("관리자 비밀번호를 입력해 주세요: ");
+                    String inputPassword = scanner.nextLine();
+                    if (inputPassword.equals(adminPassword)) {
+                        System.out.println("관리자 모드에 접속되었습니다.");
+                    } else {
+                        System.out.println("일치하지 않는 비밀번호입니다.");
+                    }
                 } else {
                     number = 0;
                     Category category = categories.get(categoryInput - 1);
