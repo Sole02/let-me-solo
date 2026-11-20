@@ -75,12 +75,18 @@ public class CommerceSystem {
                     System.out.println("장바구니를 비웠습니다.");
                 } else if (categoryInput == 6) {
                     scanner.nextLine();
-                    System.out.print("관리자 비밀번호를 입력해 주세요: ");
-                    String inputPassword = scanner.nextLine();
-                    if (inputPassword.equals(adminPassword)) {
-                        System.out.println("관리자 모드에 접속되었습니다.");
-                    } else {
-                        System.out.println("일치하지 않는 비밀번호입니다.");
+                    for (int loginAttempt = 1; loginAttempt <= 3; loginAttempt++) {
+                        System.out.print("관리자 비밀번호를 입력해 주세요: ");
+                        String inputPassword = scanner.nextLine();
+                        if (inputPassword.equals(adminPassword)) {
+                            System.out.println("관리자 모드에 접속되었습니다.");
+                            break;
+                        } else {
+                            System.out.println("일치하지 않는 비밀번호입니다.");
+                        }
+                        if (loginAttempt == 3) {
+                            System.out.println("로그인에 실패하였습니다, 메인 메뉴로 돌아갑니다.");
+                        }
                     }
                 } else {
                     number = 0;
