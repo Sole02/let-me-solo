@@ -9,14 +9,13 @@ public class CommerceSystem {
     private List<Category> categories;
     private Cart cart = new Cart();
     private String adminPassword = "1234";
+    private Scanner scanner = new Scanner(System.in);
 
     public CommerceSystem(List<Category> categories) {
         this.categories = categories;
     }
 
     public void start() {
-
-        Scanner scanner = new Scanner(System.in);
 
         int categoryInput = 1;
         int productInput = 1;
@@ -79,7 +78,7 @@ public class CommerceSystem {
                         System.out.print("관리자 비밀번호를 입력해 주세요: ");
                         String inputPassword = scanner.nextLine();
                         if (inputPassword.equals(adminPassword)) {
-                            System.out.println("관리자 모드에 접속되었습니다.");
+                            adminMode();
                             break;
                         } else {
                             System.out.println("일치하지 않는 비밀번호입니다.");
@@ -129,6 +128,44 @@ public class CommerceSystem {
                 scanner.next();
             } catch (IllegalStateException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void adminMode() {
+
+        int adminMenuInput = 1;
+
+        System.out.println("관리자 모드에 접속되었습니다.");
+        while (adminMenuInput != 0) {
+            System.out.println("[ 관리자 모드 ]");
+            System.out.println("1. 상품 추가");
+            System.out.println("2. 상품 수정");
+            System.out.println("3. 상품 삭제");
+            System.out.println("4. 전체 상품 현황");
+            System.out.println("0. 메인으로 돌아가기");
+            try {
+                adminMenuInput = scanner.nextInt();
+                if (adminMenuInput == 1) {
+                    System.out.println("기능 준비중입니다.");
+                } else if (adminMenuInput == 2) {
+                    System.out.println("기능 준비중입니다.");
+                } else if (adminMenuInput == 3) {
+                    System.out.println("기능 준비중입니다.");
+                } else if (adminMenuInput == 4) {
+                    System.out.println("기능 준비중입니다.");
+                } else if (adminMenuInput == 0) {
+                    System.out.println("메인으로 돌아갑니다.");
+                    break;
+                } else {
+                    throw new IllegalArgumentException("잘못된 입력입니다, 보기의 번호를 입력해 주세요.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("잘못된 입력입니다, 보기의 번호를 입력해 주세요.");
+                scanner.nextLine();
             }
         }
     }
