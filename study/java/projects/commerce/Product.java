@@ -32,4 +32,16 @@ public class Product {
     public void reduceStock(int quantity) {
         stockQuantity -= quantity;
     }
+
+    public void setPrice(int newPrice) {
+        price = newPrice;
+    }
+
+    public void setDescription(String newDescription) {
+        description = newDescription;
+    }
+
+    public void setStockQuantity(int newStockQuantity) {
+        stockQuantity = newStockQuantity;
+    }
 }

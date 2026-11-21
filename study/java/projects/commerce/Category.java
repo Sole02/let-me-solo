@@ -29,4 +29,13 @@ public class Category {
         }
         productList.add(product);
     }
+
+    public Product findProduct(String productName) {
+        for (Product product : productList) {
+            if (product.getName().equals(productName)) {
+                return product;
+            }
+        }
+        return null;
+    }
 }

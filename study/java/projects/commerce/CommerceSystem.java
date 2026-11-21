@@ -149,7 +149,7 @@ public class CommerceSystem {
                 if (adminMenuInput == 1) {
                     addProductMenu();
                 } else if (adminMenuInput == 2) {
-                    System.out.println("기능 준비중입니다.");
+                    editProductMenu();
                 } else if (adminMenuInput == 3) {
                     System.out.println("기능 준비중입니다.");
                 } else if (adminMenuInput == 4) {
@@ -207,6 +207,62 @@ public class CommerceSystem {
             System.out.println("상품 등록을 취소하였습니다.");
         } else {
             System.out.println("잘못된 입력입니다, 보기의 번호를 입력해 주세요.");
+        }
+    }
+
+    private void editProductMenu() {
+
+        System.out.print("수정할 상품명을 입력해 주세요: ");
+        scanner.nextLine();
+        String editProductName = scanner.nextLine();
+        boolean isThereAProduct = false;
+
+        for (Category category : categories) {
+            Product editProduct = category.findProduct(editProductName);
+            if (editProduct != null) {
+                isThereAProduct = true;
+                System.out.println("현재 상품 정보: " + editProduct.getName() + " | " + editProduct.getPrice() + "원 | " + editProduct.getDescription() + " | 재고: " + editProduct.getStockQuantity() + "개");
+                System.out.println("수정할 항목을 선택해 주세요.");
+                System.out.println("1. 가격");
+                System.out.println("2. 설명");
+                System.out.println("3. 재고 수량");
+
+                int editSelectionInput = scanner.nextInt();
+                if (editSelectionInput == 1) {
+                    System.out.println("현재 가격: " + editProduct.getPrice() + "원");
+                    System.out.print("변경할 가격을 입력해 주세요: ");
+                    int newPrice = scanner.nextInt();
+
+                    int priceBeforeChange = editProduct.getPrice();
+                    editProduct.setPrice(newPrice);
+                    System.out.println(editProduct.getName() + "의 가격이 " + priceBeforeChange + "원 → " + editProduct.getPrice() + "원으로 수정되었습니다.");
+                    break;
+                } else if (editSelectionInput == 2) {
+                    System.out.println("현재 설명: " + editProduct.getDescription());
+                    System.out.print("변경할 설명을 입력해 주세요: ");
+                    scanner.nextLine();
+                    String newDescription = scanner.nextLine();
+
+                    String descriptionBeforeChange = editProduct.getDescription();
+                    editProduct.setDescription(newDescription);
+                    System.out.println(editProduct.getName() + "의 상품 설명이 '" + descriptionBeforeChange + "' → '" + editProduct.getDescription() + "'으로 수정되었습니다.");
+                    break;
+                } else if (editSelectionInput == 3) {
+                    System.out.println("현재 재고: " + editProduct.getStockQuantity() + "개");
+                    System.out.print("변경할 수량을 입력해 주세요: ");
+                    int newStockQuantity = scanner.nextInt();
+
+                    int stockQuantityBeforeChange = editProduct.getStockQuantity();
+                    editProduct.setStockQuantity(newStockQuantity);
+                    System.out.println(editProduct.getName() + "의 재고가 " + stockQuantityBeforeChange + "개 → " + editProduct.getStockQuantity() + "개로 수정되었습니다.");
+                    break;
+                } else {
+                    throw new IllegalArgumentException("잘못된 입력입니다, 보기의 번호를 입력해 주세요.");
+                }
+            }
+        }
+        if (!isThereAProduct) {
+            System.out.println("존재하지 않는 상품입니다.");
         }
     }
 }
