@@ -20,4 +20,8 @@ public class Category {
     public String getName() {
         return name;
     }
+
+    public void addProduct(Product product) {
+        productList.add(product);
+    }
 }

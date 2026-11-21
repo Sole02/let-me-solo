@@ -147,7 +147,7 @@ public class CommerceSystem {
             try {
                 adminMenuInput = scanner.nextInt();
                 if (adminMenuInput == 1) {
-                    System.out.println("기능 준비중입니다.");
+                    addProductMenu();
                 } else if (adminMenuInput == 2) {
                     System.out.println("기능 준비중입니다.");
                 } else if (adminMenuInput == 3) {
@@ -167,6 +167,45 @@ public class CommerceSystem {
                 System.out.println("잘못된 입력입니다, 보기의 번호를 입력해 주세요.");
                 scanner.nextLine();
             }
+        }
+    }
+
+    private void addProductMenu() {
+
+        System.out.println("어느 카테고리에 상품을 추가하시겠습니까?");
+
+        int number = 0;
+
+        for (Category category : categories) {
+            number++;
+            System.out.println(number + ". " + category.getName());
+        }
+
+        int selectCategoryInput = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("[ " + categories.get(selectCategoryInput - 1).getName() + " 카테고리에 상품 추가 ]");
+        System.out.print("상품명을 입력해 주세요: ");
+        String productNameInput = scanner.nextLine();
+        System.out.print("가격을 입력해 주세요: ");
+        int productPriceInput = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("상품 설명을 입력해 주세요: ");
+        String productDescriptionInput = scanner.nextLine();
+        System.out.print("재고 수량을 입력해 주세요: ");
+        int productStockQuantityInput = scanner.nextInt();
+
+        System.out.println(productNameInput + " | " + productPriceInput + "원 | " + productDescriptionInput + " | 재고: " + productStockQuantityInput + "개");
+        System.out.println("위 정보로 상품을 추가하시겠습니까?");
+        System.out.println("1. 확인  2. 취소");
+        int selectWhetherToAdd = scanner.nextInt();
+        if (selectWhetherToAdd == 1) {
+            categories.get(selectCategoryInput - 1).addProduct(new Product(productNameInput, productPriceInput, productDescriptionInput, productStockQuantityInput));
+            System.out.println("상품이 성공적으로 추가되었습니다.");
+        } else if (selectWhetherToAdd == 2) {
+            System.out.println("상품 등록을 취소하였습니다.");
+        } else {
+            System.out.println("잘못된 입력입니다, 보기의 번호를 입력해 주세요.");
         }
     }
 }
