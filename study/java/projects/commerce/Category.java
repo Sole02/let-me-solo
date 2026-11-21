@@ -22,6 +22,11 @@ public class Category {
     }
 
     public void addProduct(Product product) {
+        for (Product savedProduct : productList) {
+            if (savedProduct.getName().equals(product.getName())) {
+                throw new IllegalArgumentException("이미 존재하는 상품입니다.");
+            }
+        }
         productList.add(product);
     }
 }

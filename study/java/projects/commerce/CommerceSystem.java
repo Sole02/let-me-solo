@@ -200,7 +200,8 @@ public class CommerceSystem {
         System.out.println("1. 확인  2. 취소");
         int selectWhetherToAdd = scanner.nextInt();
         if (selectWhetherToAdd == 1) {
-            categories.get(selectCategoryInput - 1).addProduct(new Product(productNameInput, productPriceInput, productDescriptionInput, productStockQuantityInput));
+            Product inputProduct = new Product(productNameInput, productPriceInput, productDescriptionInput, productStockQuantityInput);
+            categories.get(selectCategoryInput - 1).addProduct(inputProduct);
             System.out.println("상품이 성공적으로 추가되었습니다.");
         } else if (selectWhetherToAdd == 2) {
             System.out.println("상품 등록을 취소하였습니다.");
